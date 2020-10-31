@@ -12,5 +12,5 @@ public abstract class GunBehaviour : MonoBehaviour
     public float Damage;
 
 
-    public abstract void MakeShoot();
+    public abstract void MakeShoot(GameObject firePoint);
 }

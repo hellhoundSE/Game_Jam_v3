@@ -10,6 +10,9 @@ public abstract class Gun : MonoBehaviour
 
     public int ammo;
 
+    public ShootingTypeEnum shootingType;
 
-    public abstract void Shoot();
+    public float chargingTime = 2;
+
+    public abstract void Shoot(GameObject firePoint);
 }

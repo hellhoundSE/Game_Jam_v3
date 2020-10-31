@@ -181,8 +181,9 @@ public class PlayerController : MonoBehaviour
         
         if(collision.transform.tag == "Gun" && pockUpPressed)
         {
+            Debug.Log("test");
             shooting.Gun = collision.gameObject.GetComponent<Gun>();
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
 
     }
