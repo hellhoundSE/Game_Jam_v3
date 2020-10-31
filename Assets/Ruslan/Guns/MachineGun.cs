@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MachineGun : Gun
 {
-    public override void Shoot()
+    public override void Shoot(GameObject firePoint)
     {
         //ammo and other things is ok
         if (true)
         {
-            Behaviour.MakeShoot();
+            Behaviour.MakeShoot(firePoint);
         }
     }
 }
