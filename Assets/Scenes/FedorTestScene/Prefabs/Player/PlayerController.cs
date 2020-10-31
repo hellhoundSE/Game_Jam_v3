@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public float maxAngularVelocity;
     public float speed;
+    public float flyingSpeed;
+    private float currentMaxSpeed;
     public float torque;
     public float jumpForce;
 
@@ -34,7 +36,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         ClampAngularVelocity();
-        //IsGroundedRaycast();
     }
 
     void ClampAngularVelocity()
@@ -46,20 +47,6 @@ public class PlayerController : MonoBehaviour
     void AnimatorUpdate()
     {
         float speedThreshold = 0.2f;
-
-        //if (isGrounded)
-        //{
-        //    animator.SetBool("isJumping", false);
-
-        //    if (Mathf.Abs(rigidbody.velocity.x) > speedThreshold)
-        //        animator.SetBool("isWalking", true);
-        //    else
-        //        animator.SetBool("isWalking", false);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isJumping", true);
-        //}
 
         if (rigidbody.velocity.x > speedThreshold)
         {
@@ -100,13 +87,22 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
+        if (isGrounded)
+        {
+            currentMaxSpeed = speed;
+        }
+        if (!isGrounded)
+        {
+            currentMaxSpeed = flyingSpeed;
+        }
+
         if (Input.GetKey(KeyCode.W))
         {
 
         }
         if (Input.GetKey(KeyCode.A))
         {
-            MovePlayerByX(-speed * Time.deltaTime, torque * Time.deltaTime);
+            MovePlayerByX(-currentMaxSpeed * Time.deltaTime, torque * Time.deltaTime);
 
         }
         if (Input.GetKey(KeyCode.S))
@@ -115,7 +111,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.D))
         {
-            MovePlayerByX(speed * Time.deltaTime, -torque * Time.deltaTime);
+            MovePlayerByX(currentMaxSpeed * Time.deltaTime, -torque * Time.deltaTime);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -125,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayerByX(float xValue, float torque)
     {
-        if (isGrounded)
+        //if (isGrounded)
         {
             rigidbody.AddForce(new Vector2(xValue, 0));
             rigidbody.AddTorque(torque);
@@ -142,23 +138,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //void IsGroundedRaycast()
-    //{
-    //    RaycastHit2D hit = Physics2D.Raycast(playerBottom.position, -Vector2.up);
-
-    //    if (hit.collider != null && Vector2.Distance(new Vector2(playerBottom.position.x, playerBottom.position.y), hit.point) < groundedDistance)
-    //    {
-    //        currentHitDistance = Vector2.Distance(new Vector2(playerBottom.position.x, playerBottom.position.y), hit.point);
-    //        isGrounded = true;
-    //        rigidbody.drag = dragWhenGrounded;
-    //    }
-    //    else
-    //    {
-    //        isGrounded = false;
-    //        rigidbody.drag = initialLinearDrag;
-    //    }
-    //}
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isGrounded = true;
@@ -170,16 +149,4 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
         rigidbody.drag = initialLinearDrag;
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    isGrounded = true;
-    //    rigidbody.drag = dragWhenGrounded;
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    isGrounded = false;
-    //    rigidbody.drag = initialLinearDrag;
-    //}
 }
