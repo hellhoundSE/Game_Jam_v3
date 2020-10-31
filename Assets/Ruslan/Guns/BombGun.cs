@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserGun : Gun
+public class BombGun : Gun
 {
     public override void Shoot(GameObject firePoint)
     {
