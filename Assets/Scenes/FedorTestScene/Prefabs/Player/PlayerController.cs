@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
 
     private Animator animator;
+
+    public Transform playerBottom;
+    public float currentHitDistance;
+    public float groundedDistance;
 
     private Rigidbody2D rigidbody;
     private float initialLinearDrag;
@@ -29,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         ClampAngularVelocity();
+        //IsGroundedRaycast();
     }
 
     void ClampAngularVelocity()
@@ -91,6 +97,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     void Movement()
     {
         if (Input.GetKey(KeyCode.W))
@@ -135,15 +142,44 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    //void IsGroundedRaycast()
+    //{
+    //    RaycastHit2D hit = Physics2D.Raycast(playerBottom.position, -Vector2.up);
+
+    //    if (hit.collider != null && Vector2.Distance(new Vector2(playerBottom.position.x, playerBottom.position.y), hit.point) < groundedDistance)
+    //    {
+    //        currentHitDistance = Vector2.Distance(new Vector2(playerBottom.position.x, playerBottom.position.y), hit.point);
+    //        isGrounded = true;
+    //        rigidbody.drag = dragWhenGrounded;
+    //    }
+    //    else
+    //    {
+    //        isGrounded = false;
+    //        rigidbody.drag = initialLinearDrag;
+    //    }
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         isGrounded = true;
         rigidbody.drag = dragWhenGrounded;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         isGrounded = false;
         rigidbody.drag = initialLinearDrag;
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    isGrounded = true;
+    //    rigidbody.drag = dragWhenGrounded;
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    isGrounded = false;
+    //    rigidbody.drag = initialLinearDrag;
+    //}
 }
