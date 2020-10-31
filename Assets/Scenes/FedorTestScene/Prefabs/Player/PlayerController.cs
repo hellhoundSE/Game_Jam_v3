@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     private Rigidbody2D rigidbody;
+    private float initialLinearDrag;
+    public float dragWhenGrounded;
 
     public float maxAngularVelocity;
     public float speed;
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        initialLinearDrag = rigidbody.drag;
         animator = GetComponent<Animator>();
     }
 
@@ -38,19 +41,19 @@ public class PlayerController : MonoBehaviour
     {
         float speedThreshold = 0.2f;
 
-        if (isGrounded)
-        {
-            animator.SetBool("isJumping", false);
+        //if (isGrounded)
+        //{
+        //    animator.SetBool("isJumping", false);
 
-            if (Mathf.Abs(rigidbody.velocity.x) > speedThreshold)
-                animator.SetBool("isWalking", true);
-            else
-                animator.SetBool("isWalking", false);
-        }
-        else
-        {
-            animator.SetBool("isJumping", true);
-        }
+        //    if (Mathf.Abs(rigidbody.velocity.x) > speedThreshold)
+        //        animator.SetBool("isWalking", true);
+        //    else
+        //        animator.SetBool("isWalking", false);
+        //}
+        //else
+        //{
+        //    animator.SetBool("isJumping", true);
+        //}
 
         if (rigidbody.velocity.x > speedThreshold)
         {
@@ -128,16 +131,19 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody.AddForce(new Vector2(0, jumpForce));
             isGrounded = false;
+            rigidbody.drag = initialLinearDrag;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
+        rigidbody.drag = dragWhenGrounded;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit(Collider other)
     {
         isGrounded = false;
+        rigidbody.drag = initialLinearDrag;
     }
 }
