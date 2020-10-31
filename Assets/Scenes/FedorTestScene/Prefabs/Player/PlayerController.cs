@@ -22,10 +22,14 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
 
     public bool isGrounded = true;
+    Shooting shooting;
+
+    public bool pockUpPressed = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        shooting = GetComponent<Shooting>();
         rigidbody = GetComponent<Rigidbody2D>();
         initialLinearDrag = rigidbody.drag;
         animator = GetComponent<Animator>();
@@ -34,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         ClampAngularVelocity();
+        pockUpPressed = Input.GetKey(KeyCode.X);
         //IsGroundedRaycast();
     }
 
@@ -171,11 +176,16 @@ public class PlayerController : MonoBehaviour
         rigidbody.drag = initialLinearDrag;
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    isGrounded = true;
-    //    rigidbody.drag = dragWhenGrounded;
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if(collision.transform.tag == "Gun" && pockUpPressed)
+        {
+            shooting.Gun = collision.gameObject.GetComponent<Gun>();
+            Destroy(collision.gameObject);
+        }
+
+    }
 
     //private void OnTriggerExit(Collider other)
     //{

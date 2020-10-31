@@ -13,11 +13,6 @@ public class DropppedGun : MonoBehaviour
     {
         sprite = gameObject.GetComponent<Sprite>();
 
-        sprite = Gun.sprite;
-
-         
-
-
     }
 
 
