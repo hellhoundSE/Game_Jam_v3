@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded = true;
 
+    public int health = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -173,7 +175,7 @@ public class PlayerController : MonoBehaviour
         if (avgDistanceDelta > 0.01f)
         {
             isGoingDown = true;
-            Debug.Log("Down");
+            //Debug.Log("Down");
         }
         else
             isGoingDown = false;
@@ -197,6 +199,11 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+
+    public void DecreaseHealth(int decreaseBy = 1)
+    {
+        health -= decreaseBy;
+    }
 
     //private void OnCollisionEnter2D(Collision2D collision)
     //{

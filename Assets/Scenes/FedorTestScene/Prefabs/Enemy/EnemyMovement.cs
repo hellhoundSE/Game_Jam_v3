@@ -6,20 +6,27 @@ public class EnemyMovement : MonoBehaviour
 {
     public GameObject player;
     public float distanceThreshold;
-    public float distanceToPlayer;
+    private float distanceToPlayer;
 
     public Transform leftRay;
     public Transform middlRay;
     public Transform rightRay;
+    public float isGroundedThreshold = 1.5f;
 
     public GameObject hitObject;
-    public float distanceToHit;
+    private float distanceToHit;
 
+    private Rigidbody2D rigidbody;
+    public float normalSpeed;
+    public float followingSpeed;
+
+    public int decreaseHealthBy = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -31,6 +38,11 @@ public class EnemyMovement : MonoBehaviour
 
         if (distanceToPlayer < distanceThreshold)
             FollowPlayer();
+    }
+
+    bool IsRayOnGround(Transform rayTransform)
+    {
+        return GetHitDistance(rayTransform) < isGroundedThreshold;
     }
 
     void GroundRaycast()
@@ -55,7 +67,34 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void FollowPlayer()
-    { 
-        
+    {
+        if (player.transform.position.x < transform.position.x)
+        {
+            if (IsRayOnGround(leftRay))
+            {
+                MovePlayerByX(-followingSpeed * Time.deltaTime);
+            }
+        }
+        if (player.transform.position.x > transform.position.x)
+        {
+            if (IsRayOnGround(rightRay))
+            {
+                MovePlayerByX(followingSpeed * Time.deltaTime);
+            }
+        }
+    }
+
+    void MovePlayerByX(float xValue)
+    {
+        rigidbody.AddForce(new Vector2(xValue, 0));
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            collision.transform.gameObject.GetComponent<PlayerController>().DecreaseHealth(decreaseHealthBy);
+        }
     }
 }
