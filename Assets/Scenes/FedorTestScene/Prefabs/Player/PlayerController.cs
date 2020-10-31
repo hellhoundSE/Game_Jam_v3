@@ -8,9 +8,12 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    public Transform playerBottom;
-    public float currentHitDistance;
-    public float groundedDistance;
+    public Transform[] groundRays;
+    public float averageDistanceOnLastFrame;
+    public float averageDistanceOnThisFrame;
+    public float avgDistanceDelta;
+    public float isGroundedDistanceThreshold;
+    public bool isGoingDown;
 
     private Rigidbody2D rigidbody;
     private float initialLinearDrag;
@@ -67,6 +70,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        IsGrounded();
         AnimatorUpdate();
         Movement();
 
@@ -138,15 +142,71 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    void IsGrounded()
     {
-        isGrounded = true;
-        rigidbody.drag = dragWhenGrounded;
+        averageDistanceOnThisFrame = 0;
+        bool solved = false;
+        foreach (Transform groundRay in groundRays)
+        {
+            if (IsGrounded(groundRay))
+                solved = true;
+        }
+
+        switch (solved)
+        {
+            case true:
+                if (isGoingDown)
+                {
+                    isGrounded = true;
+                    rigidbody.drag = dragWhenGrounded;
+                }
+                break;
+            case false:
+                isGrounded = false;
+                rigidbody.drag = initialLinearDrag;
+                break;
+        }
+
+        averageDistanceOnThisFrame /= groundRays.Length;
+        avgDistanceDelta = averageDistanceOnLastFrame - averageDistanceOnThisFrame;
+        if (avgDistanceDelta > 0.01f)
+        {
+            isGoingDown = true;
+            Debug.Log("Down");
+        }
+        else
+            isGoingDown = false;
+        averageDistanceOnLastFrame = averageDistanceOnThisFrame;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+
+    bool IsGrounded(Transform origin)
     {
-        isGrounded = false;
-        rigidbody.drag = initialLinearDrag;
+        RaycastHit2D hit = Physics2D.Raycast(origin.position, -Vector2.up);
+
+        if (hit.collider != null)
+        {
+            float distance = Vector2.Distance(new Vector2(origin.position.x, origin.position.y), hit.point);
+            averageDistanceOnThisFrame += distance;
+            //Debug.Log(distance);
+            if(distance < isGroundedDistanceThreshold)
+                return true;
+        }
+
+        return false;
     }
+
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    isGrounded = true;
+    //    rigidbody.drag = dragWhenGrounded;
+    //}
+
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    isGrounded = false;
+    //    rigidbody.drag = initialLinearDrag;
+    //}
 }
