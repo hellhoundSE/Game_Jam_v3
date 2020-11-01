@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3962371836408248880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 983209203143132163}
+  m_Layer: 0
+  m_Name: topRayOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &983209203143132163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962371836408248880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.652, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7845349491777058240}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7845349490540925450
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +236,7 @@ Transform:
   - {fileID: 7845349490540925451}
   - {fileID: 7845349490547847701}
   - {fileID: 7845349490996893368}
+  - {fileID: 983209203143132163}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,14 +252,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f90362a8a8335c4180d2c596ab8da93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  distanceThreshold: 6
+  stayOnPlatform: 0
+  distanceThreshold: Infinity
+  topRay: {fileID: 983209203143132163}
   leftRay: {fileID: 7845349490540925451}
   middlRay: {fileID: 7845349490547847701}
   rightRay: {fileID: 7845349490996893368}
+  isGroundedThreshold: 1.5
+  isUnderPlatformTheshold: 2
   hitObject: {fileID: 0}
-  normalSpeed: 300
-  followingSpeed: 350
+  jumpTimer_: 0
+  jumpForce: 0
+  normalSpeed: 350
+  followingSpeed: 1000
   decreaseHealthBy: 1
 --- !u!61 &7845349491777058241
 BoxCollider2D:
