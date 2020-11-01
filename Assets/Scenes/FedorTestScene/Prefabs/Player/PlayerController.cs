@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     public int health = 10;
     Shooting shooting;
+
+    public  bool isKeyPressed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +81,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isKeyPressed = Input.GetKey(KeyCode.X);
+
         IsGrounded();
         //AnimatorUpdate();
         Movement();
@@ -219,10 +223,13 @@ public class PlayerController : MonoBehaviour
     //    rigidbody.drag = dragWhenGrounded;
     //}
 
-    private void OnTriggerEnterу2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Gun" && Input.GetKey(KeyCode.X))
+        Debug.Log("Before");
+
+        if (collision.transform.tag == "Gun" && isKeyPressed)
         {
+            Debug.Log("Pick");
             Gun g = collision.gameObject.GetComponent<Gun>();
             shooting.Gun = g; 
         }
