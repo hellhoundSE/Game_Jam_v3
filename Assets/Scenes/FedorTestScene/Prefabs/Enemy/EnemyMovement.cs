@@ -69,7 +69,6 @@ public class EnemyMovement : MonoBehaviour
             float d = GetHitDistance(topRay, Vector2.up);
             if (d == -1)
                 d = Mathf.Infinity;
-            Debug.Log(d);
             if (d > isUnderPlatformTheshold)
             {
                 ///
