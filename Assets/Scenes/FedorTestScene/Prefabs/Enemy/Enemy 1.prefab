@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 7845349491777058242}
   m_Layer: 0
   m_Name: Enemy 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,6 +226,7 @@ MonoBehaviour:
   leftRay: {fileID: 7845349490540925451}
   middlRay: {fileID: 7845349490547847701}
   rightRay: {fileID: 7845349490996893368}
+  isGroundedThreshold: 1.5
   hitObject: {fileID: 0}
   normalSpeed: 300
   followingSpeed: 350

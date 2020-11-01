@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
     public float followingSpeed;
 
     public int decreaseHealthBy = 1;
-
+    public int health = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -96,5 +96,12 @@ public class EnemyMovement : MonoBehaviour
         {
             collision.transform.gameObject.GetComponent<PlayerController>().DecreaseHealth(decreaseHealthBy);
         }
+    }
+
+    public void DealDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+            Destroy(gameObject);
     }
 }

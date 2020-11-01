@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gun
+  - "\u0423\u0442\u0443\u044C\u043D"
+  - Enemy
   layers:
   - Default
   - TransparentFX
