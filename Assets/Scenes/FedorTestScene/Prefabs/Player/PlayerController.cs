@@ -29,10 +29,11 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
 
     public int health = 10;
-
+    Shooting shooting;
     // Start is called before the first frame update
     void Start()
     {
+        shooting = GetComponent<Shooting>();
         rigidbody = GetComponent<Rigidbody2D>();
         initialLinearDrag = rigidbody.drag;
         animator = GetComponent<Animator>();
@@ -199,7 +200,7 @@ public class PlayerController : MonoBehaviour
             float distance = Vector2.Distance(new Vector2(origin.position.x, origin.position.y), hit.point);
             averageDistanceOnThisFrame += distance;
             //Debug.Log(distance);
-            if(distance < isGroundedDistanceThreshold)
+            if (distance < isGroundedDistanceThreshold)
                 return true;
         }
 
@@ -218,9 +219,12 @@ public class PlayerController : MonoBehaviour
     //    rigidbody.drag = dragWhenGrounded;
     //}
 
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    isGrounded = false;
-    //    rigidbody.drag = initialLinearDrag;
-    //}
+    private void OnTriggerEnterу2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Gun" && Input.GetKey(KeyCode.X))
+        {
+            Gun g = collision.gameObject.GetComponent<Gun>();
+            shooting.Gun = g; 
+        }
+    }
 }
