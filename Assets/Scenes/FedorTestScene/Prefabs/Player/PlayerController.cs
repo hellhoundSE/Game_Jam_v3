@@ -54,19 +54,24 @@ public class PlayerController : MonoBehaviour
         float speedThreshold = 0.2f;
 
         // flip by y axis depending on player`s direction
+        if (rigidbody.velocity.x < -speedThreshold)
+        {
+            transform.rotation = Quaternion.Euler(
+                transform.rotation.eulerAngles.x,
+                180,
+                transform.rotation.eulerAngles.z);
+
+            return;
+        }
+
         if (rigidbody.velocity.x > speedThreshold)
         {
             transform.rotation = Quaternion.Euler(
                 transform.rotation.eulerAngles.x,
                 0,
                 transform.rotation.eulerAngles.z);
-        }
-        if (rigidbody.velocity.x < speedThreshold)
-        {
-            transform.rotation = Quaternion.Euler(
-                transform.rotation.eulerAngles.x,
-                180,
-                transform.rotation.eulerAngles.z);
+
+            return;
         }
     }
 
