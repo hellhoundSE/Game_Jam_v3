@@ -396,6 +396,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8379729222543719281, guid: 85d3ac26a9fcf24419582313f9ff746c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.187
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85d3ac26a9fcf24419582313f9ff746c, type: 3}
 --- !u!1 &470817327
@@ -997,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79489b2d704038748b56bc53de775cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDeviationFromStartingPoint: {x: 3.71, y: 2.13}
+  maxDeviationFromStartingPoint: {x: 4.66, y: 4.7}
   followingSpeed_lerp: 0.1
 --- !u!1 &1976386665
 GameObject:
