@@ -22,8 +22,8 @@ public class EnemyMovement : MonoBehaviour
     private float distanceToHit;
 
     private Rigidbody2D rigidbody;
-    public const float jumpTimer = 2;
-    public float jumpTimer_; 
+    private float jumpTimer;
+    public float jumpTimer_;
     public float jumpForce;
     public float normalSpeed;
     public float followingSpeed;
@@ -35,6 +35,8 @@ public class EnemyMovement : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rigidbody = GetComponent<Rigidbody2D>();
+
+        jumpTimer = 4 * Random.value;
     }
 
     // Update is called once per frame

@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private Animator animator;
+    //private Animator animator;
 
     public Transform[] groundRays;
     public float averageDistanceOnLastFrame;
@@ -29,13 +29,14 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
 
     public int health = 10;
-
+    Shooting shooting;
     // Start is called before the first frame update
     void Start()
     {
+        shooting = GetComponent<Shooting>();
         rigidbody = GetComponent<Rigidbody2D>();
         initialLinearDrag = rigidbody.drag;
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -49,37 +50,37 @@ public class PlayerController : MonoBehaviour
         if (rigidbody.angularVelocity > maxAngularVelocity) { rigidbody.angularVelocity = maxAngularVelocity; }
     }
 
-    void AnimatorUpdate()
-    {
-        float speedThreshold = 0.2f;
+    //void AnimatorUpdate()
+    //{
+    //    float speedThreshold = 0.2f;
 
-        // flip by y axis depending on player`s direction
-        if (rigidbody.velocity.x < -speedThreshold)
-        {
-            transform.rotation = Quaternion.Euler(
-                transform.rotation.eulerAngles.x,
-                180,
-                transform.rotation.eulerAngles.z);
+    //    // flip by y axis depending on player`s direction
+    //    if (rigidbody.velocity.x < -speedThreshold)
+    //    {
+    //        transform.rotation = Quaternion.Euler(
+    //            transform.rotation.eulerAngles.x,
+    //            180,
+    //            transform.rotation.eulerAngles.z);
 
-            return;
-        }
+    //        return;
+    //    }
 
-        if (rigidbody.velocity.x > speedThreshold)
-        {
-            transform.rotation = Quaternion.Euler(
-                transform.rotation.eulerAngles.x,
-                0,
-                transform.rotation.eulerAngles.z);
+    //    if (rigidbody.velocity.x > speedThreshold)
+    //    {
+    //        transform.rotation = Quaternion.Euler(
+    //            transform.rotation.eulerAngles.x,
+    //            0,
+    //            transform.rotation.eulerAngles.z);
 
-            return;
-        }
-    }
+    //        return;
+    //    }
+    //}
 
     // Update is called once per frame
     void Update()
     {
         IsGrounded();
-        AnimatorUpdate();
+        //AnimatorUpdate();
         Movement();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
@@ -199,7 +200,7 @@ public class PlayerController : MonoBehaviour
             float distance = Vector2.Distance(new Vector2(origin.position.x, origin.position.y), hit.point);
             averageDistanceOnThisFrame += distance;
             //Debug.Log(distance);
-            if(distance < isGroundedDistanceThreshold)
+            if (distance < isGroundedDistanceThreshold)
                 return true;
         }
 
@@ -218,9 +219,12 @@ public class PlayerController : MonoBehaviour
     //    rigidbody.drag = dragWhenGrounded;
     //}
 
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    isGrounded = false;
-    //    rigidbody.drag = initialLinearDrag;
-    //}
+    private void OnTriggerEnterу2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Gun" && Input.GetKey(KeyCode.X))
+        {
+            Gun g = collision.gameObject.GetComponent<Gun>();
+            shooting.Gun = g; 
+        }
+    }
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1678560687310057863}
   - component: {fileID: 1678560687310057881}
   - component: {fileID: 1678560687310057882}
-  - component: {fileID: 5117000946043019898}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -47,21 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f90362a8a8335c4180d2c596ab8da93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stayOnPlatform: 0
-  jumpWithAnInterval: 1
-  distanceThreshold: 0
-  topRay: {fileID: 0}
-  leftRay: {fileID: 0}
-  middlRay: {fileID: 0}
-  rightRay: {fileID: 0}
-  isGroundedThreshold: 1.5
-  isUnderPlatformTheshold: 2
-  hitObject: {fileID: 0}
-  jumpTimer_: 0
-  jumpForce: 0
-  normalSpeed: 0
-  followingSpeed: 0
-  decreaseHealthBy: 1
+  player: {fileID: 0}
+  distanceToPlayer: 0
 --- !u!61 &1678560687310057881
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109,18 +95,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5117000946043019898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678560687310057862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e49a22f82e4baa428f7f7d421e8849d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1678560687481616959
 GameObject:
   m_ObjectHideFlags: 0
