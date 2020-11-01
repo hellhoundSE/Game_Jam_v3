@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int health;
-    public float itemChance;
+    private int health;
 
     public void DealDamage(int damage)
     {
@@ -21,12 +20,6 @@ public class EnemyHealth : MonoBehaviour
 
     private void DropOtem()
     {
-        if(UnityEngine.Random.Range(0.0f, 1.0f) < itemChance)
-        {
-            int index = (int)UnityEngine.Random.Range(0.0f, GunsLibrary.list.Count);
-            GameObject bulletClone = Instantiate(GunsLibrary.prefabs[index]);
-            bulletClone.transform.position = transform.position;
-            bulletClone.transform.rotation = Quaternion.identity;
-        }
+        Debug.Log("drop");
     }
 }
