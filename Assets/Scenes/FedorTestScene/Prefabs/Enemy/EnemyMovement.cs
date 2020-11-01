@@ -98,10 +98,5 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void DealDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-            Destroy(gameObject);
-    }
+
 }

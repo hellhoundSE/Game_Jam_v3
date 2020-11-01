@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
         if(collision.transform.tag == "Enemy")
         {
-            EnemyMovement em = collision.gameObject.GetComponent<EnemyMovement>();
+            EnemyHealth em = collision.gameObject.GetComponent<EnemyHealth>();
             em.DealDamage(damage);
         }
     }
