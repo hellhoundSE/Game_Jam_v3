@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: 932a6e6025715c9438b2f6a4567cdb98
+guid: 35d8ca233737bfe4eac12e1ad4dbbfaf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7642734273067522386
-    second: monster1_small_idle_0
+      213: 5204744767577535120
+    second: monster1_small_walk (1)_0
   - first:
-      213: 8416156361949042065
-    second: monster1_small_idle_1
+      213: 1696637994034615720
+    second: monster1_small_walk (1)_0
   - first:
-      213: 7428501223618275092
-    second: monster1_small_idle_2
+      213: -4429658803704936847
+    second: monster1_small_walk (1)_1
   - first:
-      213: -5108277094672266877
-    second: monster1_small_idle_3
+      213: 2208023823656399375
+    second: monster1_small_walk (1)_2
+  - first:
+      213: 1598212021751239582
+    second: monster1_small_walk (1)_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -75,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -87,7 +90,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -101,85 +104,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: monster1_small_idle_0
+      name: monster1_small_walk (1)_0
       rect:
         serializedVersion: 2
-        x: 188
-        y: 237
-        width: 594
-        height: 516
+        x: 10
+        y: 0
+        width: 590
+        height: 510
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea66b1debad8fe590800000000000000
-      internalID: -7642734273067522386
+      spriteID: 8a55dd2344bab8710800000000000000
+      internalID: 1696637994034615720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster1_small_idle_1
+      name: monster1_small_walk (1)_1
       rect:
         serializedVersion: 2
-        x: 1188
-        y: 237
-        width: 594
-        height: 506
+        x: 620
+        y: 0
+        width: 590
+        height: 520
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 195dd18de913cc470800000000000000
-      internalID: 8416156361949042065
+      spriteID: 1764cf099c0b682c0800000000000000
+      internalID: -4429658803704936847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster1_small_idle_2
+      name: monster1_small_walk (1)_2
       rect:
         serializedVersion: 2
-        x: 2188
-        y: 237
-        width: 594
-        height: 494
+        x: 1230
+        y: 0
+        width: 590
+        height: 510
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41762574186571760800000000000000
-      internalID: 7428501223618275092
+      spriteID: f02b3a018f974ae10800000000000000
+      internalID: 2208023823656399375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster1_small_idle_3
+      name: monster1_small_walk (1)_3
       rect:
         serializedVersion: 2
-        x: 3188
-        y: 237
-        width: 594
-        height: 506
+        x: 1840
+        y: 0
+        width: 590
+        height: 520
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3898bc51c01cb19b0800000000000000
-      internalID: -5108277094672266877
+      spriteID: e93dd38bd5dfd2610800000000000000
+      internalID: 1598212021751239582
       vertices: []
       indices: 
       edges: []
