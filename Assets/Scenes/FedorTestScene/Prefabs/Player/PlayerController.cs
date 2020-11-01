@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         float speedThreshold = 0.2f;
 
+        // flip by y axis depending on player`s direction
         if (rigidbody.velocity.x > speedThreshold)
         {
             transform.rotation = Quaternion.Euler(
@@ -187,6 +188,7 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(origin.position, -Vector2.up);
 
+        //if (hit.collider != null && hit.collider.tag == "Ground")
         if (hit.collider != null)
         {
             float distance = Vector2.Distance(new Vector2(origin.position.x, origin.position.y), hit.point);
