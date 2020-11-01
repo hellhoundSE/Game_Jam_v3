@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private Animator animator;
+    //private Animator animator;
 
     public Transform[] groundRays;
     public float averageDistanceOnLastFrame;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         initialLinearDrag = rigidbody.drag;
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -49,37 +49,37 @@ public class PlayerController : MonoBehaviour
         if (rigidbody.angularVelocity > maxAngularVelocity) { rigidbody.angularVelocity = maxAngularVelocity; }
     }
 
-    void AnimatorUpdate()
-    {
-        float speedThreshold = 0.2f;
+    //void AnimatorUpdate()
+    //{
+    //    float speedThreshold = 0.2f;
 
-        // flip by y axis depending on player`s direction
-        if (rigidbody.velocity.x < -speedThreshold)
-        {
-            transform.rotation = Quaternion.Euler(
-                transform.rotation.eulerAngles.x,
-                180,
-                transform.rotation.eulerAngles.z);
+    //    // flip by y axis depending on player`s direction
+    //    if (rigidbody.velocity.x < -speedThreshold)
+    //    {
+    //        transform.rotation = Quaternion.Euler(
+    //            transform.rotation.eulerAngles.x,
+    //            180,
+    //            transform.rotation.eulerAngles.z);
 
-            return;
-        }
+    //        return;
+    //    }
 
-        if (rigidbody.velocity.x > speedThreshold)
-        {
-            transform.rotation = Quaternion.Euler(
-                transform.rotation.eulerAngles.x,
-                0,
-                transform.rotation.eulerAngles.z);
+    //    if (rigidbody.velocity.x > speedThreshold)
+    //    {
+    //        transform.rotation = Quaternion.Euler(
+    //            transform.rotation.eulerAngles.x,
+    //            0,
+    //            transform.rotation.eulerAngles.z);
 
-            return;
-        }
-    }
+    //        return;
+    //    }
+    //}
 
     // Update is called once per frame
     void Update()
     {
         IsGrounded();
-        AnimatorUpdate();
+        //AnimatorUpdate();
         Movement();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
